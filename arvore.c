@@ -69,6 +69,18 @@ link buscaR (ARVORE a, link h, int key) {
     return buscaR(a, h->right, key);
   return buscaR(a, h->left, key);
 }
+link buscaRP (ARVORE a, link h, int key){
+  if(h == a->z) return NULL;
+  if(h->left->key == key) return h;
+  if(h->right->key == key) return h;
+  if(h->key == key) return h;//h é raiz
+  if( h->key < key) 
+    return buscaR(a, h->right, key);
+  return buscaR(a, h->left, key);
+}
+link buscaPai (ARVORE a, int key){
+  return buscaRP (a, a->raiz, key);
+}
 
 
 link busca (ARVORE a, int key){
@@ -145,9 +157,28 @@ link rotR(ARVORE a, link h) {
   return x;
 }
 
+
+void remover (ARVORE a, int key){
+  link achei;
+  link pai;
+  achei = busca (a, key);
+  if(achei == NULL){
+    printf("VALOR NAO EXISTENTE");
+    return 0;
+  }
+  pai = buscaPai(a,key);
+  if(achei->left == a->z && achei->right == a->z){
+    if(pai->left->key == key) pai->left = a->z;
+    else if(pai->right->key == key) pai->right = a->z;
+    else pai = a->z;
+    free(achei);
+    return 0;
+  }else if(achei->key > a->raiz->key)rotL();
+
+}
+
 #if 0
-void remover (ARVORE a, int key);
-void removerNo (ARVORE a, link node);
+void removerNo (ARVORE a, link pai);
 void destroiArvore(ARVORE a);
 #endif 
 
