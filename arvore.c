@@ -173,7 +173,7 @@ void remover (ARVORE a, int key){
     else pai = a->z;
     free(achei);
     return 0;
-  }else if(achei->key > a->raiz->key)rotL();
+  }else if(achei->key > a->raiz->key)rotL(a,achei);
 
 }
 
