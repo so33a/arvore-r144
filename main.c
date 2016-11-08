@@ -76,8 +76,8 @@ int main () {
    printf ("Insere na Raiz o elemento 46\n");
    imprimeEmLargura(a);
    printf("\n");
-   printf("Remove o elemento 77\n");
-   remover(a,77, a->raiz);
+   printf("Remove o elemento 46\n");
+   remover(a,46);
    imprimeEmLargura(a);
    printf("\n");
   return 0;
